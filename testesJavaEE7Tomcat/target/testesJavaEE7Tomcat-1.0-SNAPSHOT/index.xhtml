@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Toda vida</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <label>nome: <h:inputText id="nome" value="#{estruturaDeDados.beanSelecionado.nome}" /></label> <br></br>
+            <label>email: <h:inputText id="email" value="#{estruturaDeDados.beanSelecionado.email}" /></label> <br></br>
+            <label>tel: <h:inputText id="tel" value="#{estruturaDeDados.beanSelecionado.tel}" /></label> <br></br>
+
+            <h:commandButton action="#{estruturaDeDados.salvar()}" value="Salvar" />
+
+            <h:dataTable value="#{estruturaDeDados.lista}" var="b">
+                <h:column>#{b.nome} | </h:column>
+                <h:column>#{b.email} | </h:column>
+                <h:column>#{b.tel} | </h:column>
+                <h:column>
+                    <h:commandLink value="Editar">
+                        <f:setPropertyActionListener value="#{b}" target="#{estruturaDeDados.beanSelecionado}" />
+                    </h:commandLink>
+                    |
+                    <h:commandLink value="Excluir" action="#{estruturaDeDados.excluir()}"> 
+                        <f:setPropertyActionListener value="#{b}" target="#{estruturaDeDados.beanSelecionado}" />
+                    </h:commandLink>
+                </h:column>
+            </h:dataTable> 
+        </h:form>
+
+    </h:body>
+</html>
